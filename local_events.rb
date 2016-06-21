@@ -3,11 +3,13 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-uri = URI.parse("https://api.seatgeek.com/2/venues?postal_code=90210")
+url = "https://api.seatgeek.com/2/venues?city="+ARGV[0]+"&datetime_local.gte="+ARGV[1]+"&datetime_local.lt="+ARGV[2]
+print ARGV
+print "\n"
+print url + "\n"
+uri = URI.parse(url)
+print uri
 response = Net::HTTP.get_response(uri)
-venue = ARGV[1]
-performer = ARGV[2]
-city = ARGV[3]
 
 # res = JSON.parse(response.body, symbolize_names: true)
 my_hash = JSON.parse(response.body, symbolize_names: true)
